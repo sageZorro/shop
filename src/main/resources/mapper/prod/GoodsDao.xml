@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gerny.core.dao.prod.GoodsDao">
+  <resultMap id="BaseResultMap" type="com.gerny.core.entity.prod.Goods">
+    <id column="productid" jdbcType="INTEGER" property="productid" />
+    <result column="categoryid" jdbcType="INTEGER" property="categoryid" />
+    <result column="brandid" jdbcType="INTEGER" property="brandid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="clicked" jdbcType="INTEGER" property="clicked" />
+    <result column="picurl" jdbcType="VARCHAR" property="picurl" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="price1" jdbcType="DECIMAL" property="price1" />
+    <result column="sales" jdbcType="INTEGER" property="sales" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="ishot" jdbcType="TINYINT" property="ishot" />
+    <result column="isnew" jdbcType="TINYINT" property="isnew" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    productid, categoryid, brandid, name, description, detail, clicked, picurl, price, 
+    price1, sales, stock, ishot, isnew
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prod_goods
+    where productid = #{productid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from prod_goods
+    where productid = #{productid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gerny.core.entity.prod.Goods">
+    insert into prod_goods (productid, categoryid, brandid, 
+      name, description, detail, 
+      clicked, picurl, price, 
+      price1, sales, stock, 
+      ishot, isnew)
+    values (#{productid,jdbcType=INTEGER}, #{categoryid,jdbcType=INTEGER}, #{brandid,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, 
+      #{clicked,jdbcType=INTEGER}, #{picurl,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{price1,jdbcType=DECIMAL}, #{sales,jdbcType=INTEGER}, #{stock,jdbcType=INTEGER}, 
+      #{ishot,jdbcType=TINYINT}, #{isnew,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gerny.core.entity.prod.Goods">
+    insert into prod_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productid != null">
+        productid,
+      </if>
+      <if test="categoryid != null">
+        categoryid,
+      </if>
+      <if test="brandid != null">
+        brandid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="clicked != null">
+        clicked,
+      </if>
+      <if test="picurl != null">
+        picurl,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="price1 != null">
+        price1,
+      </if>
+      <if test="sales != null">
+        sales,
+      </if>
+      <if test="stock != null">
+        stock,
+      </if>
+      <if test="ishot != null">
+        ishot,
+      </if>
+      <if test="isnew != null">
+        isnew,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productid != null">
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="categoryid != null">
+        #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="brandid != null">
+        #{brandid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="clicked != null">
+        #{clicked,jdbcType=INTEGER},
+      </if>
+      <if test="picurl != null">
+        #{picurl,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="price1 != null">
+        #{price1,jdbcType=DECIMAL},
+      </if>
+      <if test="sales != null">
+        #{sales,jdbcType=INTEGER},
+      </if>
+      <if test="stock != null">
+        #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="ishot != null">
+        #{ishot,jdbcType=TINYINT},
+      </if>
+      <if test="isnew != null">
+        #{isnew,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gerny.core.entity.prod.Goods">
+    update prod_goods
+    <set>
+      <if test="categoryid != null">
+        categoryid = #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="brandid != null">
+        brandid = #{brandid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="clicked != null">
+        clicked = #{clicked,jdbcType=INTEGER},
+      </if>
+      <if test="picurl != null">
+        picurl = #{picurl,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="price1 != null">
+        price1 = #{price1,jdbcType=DECIMAL},
+      </if>
+      <if test="sales != null">
+        sales = #{sales,jdbcType=INTEGER},
+      </if>
+      <if test="stock != null">
+        stock = #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="ishot != null">
+        ishot = #{ishot,jdbcType=TINYINT},
+      </if>
+      <if test="isnew != null">
+        isnew = #{isnew,jdbcType=TINYINT},
+      </if>
+    </set>
+    where productid = #{productid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gerny.core.entity.prod.Goods">
+    update prod_goods
+    set categoryid = #{categoryid,jdbcType=INTEGER},
+      brandid = #{brandid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      clicked = #{clicked,jdbcType=INTEGER},
+      picurl = #{picurl,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      price1 = #{price1,jdbcType=DECIMAL},
+      sales = #{sales,jdbcType=INTEGER},
+      stock = #{stock,jdbcType=INTEGER},
+      ishot = #{ishot,jdbcType=TINYINT},
+      isnew = #{isnew,jdbcType=TINYINT}
+    where productid = #{productid,jdbcType=INTEGER}
+  </update>
+</mapper>

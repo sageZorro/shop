@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gerny.core.dao.prod.PropertyOptionDao">
+  <resultMap id="BaseResultMap" type="com.gerny.core.entity.prod.PropertyOption">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="propertyid" jdbcType="INTEGER" property="propertyid" />
+    <result column="option" jdbcType="VARCHAR" property="option" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, propertyid, option
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prod_property_option
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from prod_property_option
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gerny.core.entity.prod.PropertyOption">
+    insert into prod_property_option (id, propertyid, option
+      )
+    values (#{id,jdbcType=INTEGER}, #{propertyid,jdbcType=INTEGER}, #{option,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gerny.core.entity.prod.PropertyOption">
+    insert into prod_property_option
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="propertyid != null">
+        propertyid,
+      </if>
+      <if test="option != null">
+        option,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="propertyid != null">
+        #{propertyid,jdbcType=INTEGER},
+      </if>
+      <if test="option != null">
+        #{option,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gerny.core.entity.prod.PropertyOption">
+    update prod_property_option
+    <set>
+      <if test="propertyid != null">
+        propertyid = #{propertyid,jdbcType=INTEGER},
+      </if>
+      <if test="option != null">
+        option = #{option,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gerny.core.entity.prod.PropertyOption">
+    update prod_property_option
+    set propertyid = #{propertyid,jdbcType=INTEGER},
+      option = #{option,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

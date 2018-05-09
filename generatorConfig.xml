@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
+<generatorConfiguration>  
+    <context id="testTables" targetRuntime="MyBatis3">  
+        <commentGenerator>  
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->  
+            <property name="suppressAllComments" value="true" />  
+        </commentGenerator>  
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->  
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"  
+            connectionURL="jdbc:mysql://192.168.1.10:3306/park?useSSL=false&amp;characterEncoding=UTF-8"   
+            userId="root"  
+            password="121212">  
+           
+        </jdbcConnection>   
+  
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和   
+            NUMERIC 类型解析为java.math.BigDecimal -->  
+        <javaTypeResolver>  
+            <property name="forceBigDecimals" value="true" />  
+        </javaTypeResolver>  
+  
+        <!-- targetProject:生成PO类的位置 -->  
+        <javaModelGenerator targetPackage="com.gerny.core.entity.prod"  
+            targetProject="shop/src/main/java">  
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->  
+            <property name="enableSubPackages" value="false" />  
+            <!-- 从数据库返回的值被清理前后的空格 -->  
+            <property name="trimStrings" value="false" />  
+        </javaModelGenerator>  
+        <!-- targetProject:mapper映射文件生成的位置 -->  
+        <sqlMapGenerator targetPackage="mapper.prod"   
+            targetProject="shop/src/main/resources">  
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->  
+            <property name="enableSubPackages" value="false" />  
+        </sqlMapGenerator>  
+        <!-- targetPackage：mapper接口生成的位置 -->  
+        <javaClientGenerator type="XMLMAPPER"   
+            targetPackage="com.gerny.core.dao.prod"   
+            targetProject="shop/src/main/java" >  
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->  
+            <property name="enableSubPackages" value="false" />  
+        </javaClientGenerator>  
+       
+       <!-- 表结构-->
+       <!-- 指定数据库表   seller_shop-->
+       <!-- <table tableName="seller_shop" domainObjectName="Shop" mapperName="ShopDao"     enableCountByExample="false" enableUpdateByExample="false"    
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+            <property name="useActualColumnNames" value="false" />
+         </table> -->
+         <table tableName="prod_category" domainObjectName="Category" mapperName="CategoryDao"   enableCountByExample="false" enableUpdateByExample="false"    
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+            <property name="useActualColumnNames" value="false" />
+         </table>
+         <table tableName="prod_goods" domainObjectName="Goods" mapperName="GoodsDao"     enableCountByExample="false" enableUpdateByExample="false"    
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+            <property name="useActualColumnNames" value="false" />
+         </table>
+         <table tableName="prod_product" domainObjectName="Product" mapperName="ProductDao"     enableCountByExample="false" enableUpdateByExample="false"    
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+            <property name="useActualColumnNames" value="false" />
+         </table>
+         <table tableName="prod_property" domainObjectName="Property" mapperName="PropertyDao"     enableCountByExample="false" enableUpdateByExample="false"    
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+            <property name="useActualColumnNames" value="false" />
+         </table>
+         <table tableName="prod_property_option" domainObjectName="PropertyOption" mapperName="PropertyOptionDao"     enableCountByExample="false" enableUpdateByExample="false"    
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+            <property name="useActualColumnNames" value="false" />
+         </table>
+         <table tableName="prod_spec" domainObjectName="Spec" mapperName="SpecDao"     enableCountByExample="false" enableUpdateByExample="false"    
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+            <property name="useActualColumnNames" value="false" />
+         </table>
+         <table tableName="prod_spec_option" domainObjectName="SpecOption" mapperName="SpecOptionDao"     enableCountByExample="false" enableUpdateByExample="false"    
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+            <property name="useActualColumnNames" value="false" />
+         </table>
+         
+         
+    </context>  
+</generatorConfiguration>  

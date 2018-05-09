@@ -1,0 +1,31 @@
+spring: 
+   application: shop
+   mvc: 
+      view: 
+        prefix: /WEB-INF/pages/
+        suffix: .jsp
+   datasource: 
+      type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:mysql://192.168.1.10:3306/park?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+      username: root
+      password: 121212
+      driverClassName: com.mysql.jdbc.Driver
+    
+mybatis:
+    mapperLocations: classpath:/mapper/**/*.xml
+    type-aliases-package: com.gerny.core.entity #扫描pojo类的位置,在此处指明扫描实体类的包，在mapper中就可以不用写pojo类的全路径名了
+    
+logging: 
+    file: log.log
+    level: 
+      com.gerny: debug  
+      org.mybatis: debug
+      
+      
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    pageSizeZero: true
+    params: count=countSql    

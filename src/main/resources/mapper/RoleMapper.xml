@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.gerny.core.dao.RoleDao">
+
+
+	
+
+	<insert id="insert" parameterType="Role"
+		statementType="PREPARED" keyProperty="id" useGeneratedKeys="true">
+		insert into
+		sys_role(rolename)
+		values(#{rolename})
+	</insert>
+	<!-- 删除数据 -->
+	<delete id="delete" parameterType="Role">
+		delete from sys_role
+		where id = #{id}
+	</delete>
+	<delete id="deleteByID" parameterType="int">
+		delete from sys_role where
+		id = #{id}
+	</delete>
+	<update id="update" parameterType="Role">
+		update sys_role set
+		rolename=#{rolename}
+		where id = #{id}
+	</update>
+	<!-- 根据ID查询一个结果，返回值类型为Role对象 -->
+	<select id="queryById" resultType="Role">
+		select * from sys_role where
+		id = #{id}
+	</select>
+	<!-- 查询多个结果,返回值类型为Role对象 -->
+	<select id="queryRoles" resultType="Role">
+		select * from sys_role
+	</select>
+	
+	<select id="queryAll" resultMap="roleList">
+		select u.*,r.* from sys_User_role ur,sys_role r, sys_user u  where  ur.roleid = r.roleid and ur.userid = u.userid
+	</select>
+	
+	
+	<resultMap type="Role" id="roleList">  
+        <id column="roleid" property="roleid"/>  
+        <result column="rolename" property="rolename"/>  
+        <!-- 一对多的关系 -->  
+        <!-- property: 指的是集合属性的值, ofType：指的是集合中元素的类型 -->  
+        <collection property="users" ofType="User"> 
+        	<id column="userid" property="userid"/>   
+            <result column="username" property="username"/>  
+            <result column="password" property="password"/>  
+            <result column="truename" property="truename"/>  
+            <result column="phone" property="phone"/>  
+            <result column="mobile" property="mobile"/>  
+            <result column="createdate" property="createdate"/>  
+        </collection>  
+    </resultMap>  
+
+	
+</mapper>

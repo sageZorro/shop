@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.gerny.core.dao.UserDao">
+
+
+
+	<insert id="insert" parameterType="User"
+		statementType="PREPARED" keyProperty="id" useGeneratedKeys="true">
+		insert into
+		sys_user(username,password,truename,phone,mobile,createdate)
+		values(#{username},#{password},#{truename},#{phone},#{mobile},#{createdate,jdbcType=TIMESTAMP})
+	</insert>
+	<!-- 删除数据 -->
+	<delete id="delete" parameterType="User">
+		delete from sys_user
+		where userid = #{userid}
+	</delete>
+	<delete id="deleteByID" parameterType="int">
+		delete from sys_user where
+		id = #{id}
+	</delete>
+	<update id="update" parameterType="User">
+		update sys_user set
+		name=#{name},password=#{password},truename=#{truename},phone=#{phone},mobile=#{mobile}
+		where userid = #{userid}
+	</update>
+	<!-- 根据ID查询一个结果，返回值类型为User对象 -->
+	<select id="queryById" resultType="User">
+		select * from sys_user where
+		userid = #{userid}
+	</select>
+	<!-- 查询多个结果,返回值类型为User对象 -->
+	<!-- <select id="queryList" resultType="User" parameterType>
+		select * from sys_user where username =${username}
+	</select> -->
+	<select id="queryByName" resultType="User" parameterType="String">
+		select * from sys_user where username=#{username}
+	</select>
+
+	<select id="queryList" resultType="User" parameterType="com.gerny.core.vo.UserVo">
+		select * from sys_user
+		<where>
+			<if test="username != null">
+				AND username like #{username}
+			</if>
+			<if test="truename != null">
+				AND truename like #{truename}
+			</if>
+			<if test="phone != null">
+				AND phone like #{phone}
+			</if>
+			<if test="beginDate != null and beginDate != ''">AND
+				createdate <![CDATA[>=]]>
+				#{beginDate}
+			</if>
+			<if test="endDate != null and endDate != ''">AND
+				createdate <![CDATA[<=]]>#{endDate}
+			</if>
+		</where>
+	</select>
+	
+		<!-- 查询多个结果，返回resultMap -->
+	<!-- <resultMap type="com.gerny.core.entity.User" id="queryResultMap">
+		<id column="id" property="id"></id>
+		<result property="name" column="name" />
+		<result property="password" column="password" />
+	</resultMap> -->
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gerny.core.dao.prod.SpecDao">
+  <resultMap id="BaseResultMap" type="com.gerny.core.entity.prod.Spec">
+    <id column="specid" jdbcType="INTEGER" property="specid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    specid, name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prod_spec
+    where specid = #{specid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from prod_spec
+    where specid = #{specid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gerny.core.entity.prod.Spec">
+    insert into prod_spec (specid, name)
+    values (#{specid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gerny.core.entity.prod.Spec">
+    insert into prod_spec
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="specid != null">
+        specid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="specid != null">
+        #{specid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gerny.core.entity.prod.Spec">
+    update prod_spec
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where specid = #{specid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gerny.core.entity.prod.Spec">
+    update prod_spec
+    set name = #{name,jdbcType=VARCHAR}
+    where specid = #{specid,jdbcType=INTEGER}
+  </update>
+</mapper>

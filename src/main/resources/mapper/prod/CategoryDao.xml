@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gerny.core.dao.prod.CategoryDao">
+  <resultMap id="BaseResultMap" type="com.gerny.core.entity.prod.Category">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="level" jdbcType="TINYINT" property="level" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="zh" jdbcType="VARCHAR" property="zh" />
+    <result column="ru" jdbcType="VARCHAR" property="ru" />
+    <result column="pt" jdbcType="VARCHAR" property="pt" />
+    <result column="en" jdbcType="VARCHAR" property="en" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="catid" jdbcType="INTEGER" property="catid" />
+    <result column="catid_use" jdbcType="TINYINT" property="catidUse" />
+    <result column="query" jdbcType="VARCHAR" property="query" />
+    <result column="query_use" jdbcType="TINYINT" property="queryUse" />
+    <result column="weight" jdbcType="REAL" property="weight" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, level, parent_id, zh, ru, pt, en, sort, catid, catid_use, query, query_use, weight, 
+    status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prod_category
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from prod_category
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gerny.core.entity.prod.Category">
+    insert into prod_category (id, level, parent_id, 
+      zh, ru, pt, en, 
+      sort, catid, catid_use, 
+      query, query_use, weight, 
+      status)
+    values (#{id,jdbcType=INTEGER}, #{level,jdbcType=TINYINT}, #{parentId,jdbcType=INTEGER}, 
+      #{zh,jdbcType=VARCHAR}, #{ru,jdbcType=VARCHAR}, #{pt,jdbcType=VARCHAR}, #{en,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{catid,jdbcType=INTEGER}, #{catidUse,jdbcType=TINYINT}, 
+      #{query,jdbcType=VARCHAR}, #{queryUse,jdbcType=TINYINT}, #{weight,jdbcType=REAL}, 
+      #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gerny.core.entity.prod.Category">
+    insert into prod_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="zh != null">
+        zh,
+      </if>
+      <if test="ru != null">
+        ru,
+      </if>
+      <if test="pt != null">
+        pt,
+      </if>
+      <if test="en != null">
+        en,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="catid != null">
+        catid,
+      </if>
+      <if test="catidUse != null">
+        catid_use,
+      </if>
+      <if test="query != null">
+        query,
+      </if>
+      <if test="queryUse != null">
+        query_use,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="zh != null">
+        #{zh,jdbcType=VARCHAR},
+      </if>
+      <if test="ru != null">
+        #{ru,jdbcType=VARCHAR},
+      </if>
+      <if test="pt != null">
+        #{pt,jdbcType=VARCHAR},
+      </if>
+      <if test="en != null">
+        #{en,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="catid != null">
+        #{catid,jdbcType=INTEGER},
+      </if>
+      <if test="catidUse != null">
+        #{catidUse,jdbcType=TINYINT},
+      </if>
+      <if test="query != null">
+        #{query,jdbcType=VARCHAR},
+      </if>
+      <if test="queryUse != null">
+        #{queryUse,jdbcType=TINYINT},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=REAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gerny.core.entity.prod.Category">
+    update prod_category
+    <set>
+      <if test="level != null">
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="zh != null">
+        zh = #{zh,jdbcType=VARCHAR},
+      </if>
+      <if test="ru != null">
+        ru = #{ru,jdbcType=VARCHAR},
+      </if>
+      <if test="pt != null">
+        pt = #{pt,jdbcType=VARCHAR},
+      </if>
+      <if test="en != null">
+        en = #{en,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="catid != null">
+        catid = #{catid,jdbcType=INTEGER},
+      </if>
+      <if test="catidUse != null">
+        catid_use = #{catidUse,jdbcType=TINYINT},
+      </if>
+      <if test="query != null">
+        query = #{query,jdbcType=VARCHAR},
+      </if>
+      <if test="queryUse != null">
+        query_use = #{queryUse,jdbcType=TINYINT},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=REAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gerny.core.entity.prod.Category">
+    update prod_category
+    set level = #{level,jdbcType=TINYINT},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      zh = #{zh,jdbcType=VARCHAR},
+      ru = #{ru,jdbcType=VARCHAR},
+      pt = #{pt,jdbcType=VARCHAR},
+      en = #{en,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      catid = #{catid,jdbcType=INTEGER},
+      catid_use = #{catidUse,jdbcType=TINYINT},
+      query = #{query,jdbcType=VARCHAR},
+      query_use = #{queryUse,jdbcType=TINYINT},
+      weight = #{weight,jdbcType=REAL},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  <select id="queryList" resultType="Category" parameterType="Category">
+		select * from prod_category
+		<where>
+		  <if test="level != null">
+       		and level = #{level,jdbcType=TINYINT}
+	      </if>
+	      <if test="parentId != null">
+	        and parent_id = #{parentId,jdbcType=INTEGER}
+	      </if>
+	      <if test="zh != null">
+	        and zh = #{zh,jdbcType=VARCHAR}
+	      </if>
+	      <if test="ru != null">
+	        and  ru = #{ru,jdbcType=VARCHAR}
+	      </if>
+	      <if test="pt != null">
+	        and  pt = #{pt,jdbcType=VARCHAR}
+	      </if>
+	      <if test="en != null">
+	        and  en = #{en,jdbcType=VARCHAR}
+	      </if>
+	      <if test="sort != null">
+	        and  sort = #{sort,jdbcType=INTEGER}
+	      </if>
+	      <if test="catid != null">
+	        and  catid = #{catid,jdbcType=INTEGER}
+	      </if>
+	      <if test="catidUse != null">
+	        and  catid_use = #{catidUse,jdbcType=TINYINT}
+	      </if>
+	      <if test="query != null">
+	        and  query = #{query,jdbcType=VARCHAR}
+	      </if>
+	      <if test="queryUse != null">
+	        and  query_use = #{queryUse,jdbcType=TINYINT}
+	      </if>
+	      <if test="weight != null">
+	        and  weight = #{weight,jdbcType=REAL}
+	      </if>
+	      <if test="status != null">
+	        and  status = #{status,jdbcType=TINYINT}
+	      </if>
+		</where>
+	</select>
+</mapper>
